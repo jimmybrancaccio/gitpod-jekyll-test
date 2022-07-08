@@ -10,9 +10,11 @@ tasks:
       gp sync-done bundle
   - name: Run bundle install
     init: gp sync-await bundle
-    command: bundle install
+    command: |
+      bundle install &&
+      gp sync-done bundle-install
   - name: Start Jekyll
-    init: gp sync-await bundle
+    init: gp sync-await bundle-install
     command: bundle exec jekyll serve --livereload
 
 ports:
