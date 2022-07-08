@@ -4,16 +4,18 @@ tasks:
       echo '# Install Ruby Gems to /workspace/gems' >> ~/.bashrc
       echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
-      source ~/.bashrc
   - name: Install Bundler
     init: >
+      source ~/.bashrc &&
       gem install bundler &&
       bundle install &&
       gp sync-done bundle
   - name: Start Jekyll
     init: gp sync-await bundle
-    command: bundle exec jekyll serve --livereload
-
+    command: > 
+      source ~/.bashrc &&
+      bundle exec jekyll serve --livereload
+      
 ports:
   - port: 4000
     onOpen: open-browser
