@@ -6,7 +6,7 @@ tasks:
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
   - name: Install Bundler
     init: >
-      gem install bundler
+      gem install bundler &&
       gp sync-done bundle
   - name: Run bundle install
     init: gp sync-await bundle
