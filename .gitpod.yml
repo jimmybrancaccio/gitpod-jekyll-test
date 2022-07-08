@@ -1,9 +1,10 @@
 tasks:
   - name: Update ~/.bashrc
-    before: >
+    before: |
       echo '# Install Ruby Gems to /workspace/gems' >> ~/.bashrc
       echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
+      source ~/.bashrc
   - name: Install Bundler
     init: >
       gem install bundler &&
