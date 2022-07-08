@@ -1,6 +1,6 @@
 tasks:
   - name: Update ~/.bashrc
-    init: >
+    before: >
       echo '# Install Ruby Gems to /workspace/gems' >> ~/.bashrc
       echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
@@ -9,14 +9,10 @@ tasks:
     init: gp sync-await bashrc
     command: |
       gem install bundler &&
-      gp sync-done bundle
-  - name: Run bundle install
-    init: gp sync-await bundle
-    command: |
       bundle install &&
-      gp sync-done bundle-install
+      gp sync-done bundle
   - name: Start Jekyll
-    init: gp sync-await bundle-install
+    init: gp sync-await bundle
     command: bundle exec jekyll serve --livereload
 
 ports:
