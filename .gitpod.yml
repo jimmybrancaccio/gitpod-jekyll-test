@@ -1,0 +1,16 @@
+tasks:
+  - name: Update ~/.bashrc
+    before: |
+      echo '# Install Ruby Gems to /workspace/gems' >> ~/.bashrc
+      echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
+      echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
+  - name: Install Bundler
+    init: gem install bundler
+  - name: Run bundle install
+    init: bundle install
+  - name: Start Jekyll
+    command: bundle exec jekyll serve --livereload
+
+ports:
+  - port: 4000
+    onOpen: open-browser
