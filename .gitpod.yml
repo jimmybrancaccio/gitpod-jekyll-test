@@ -5,10 +5,14 @@ tasks:
       echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
   - name: Install Bundler
-    init: gem install bundler
+    init: >
+      gem install bundler
+      gp sync-done bundle
   - name: Run bundle install
-    init: bundle install
+    init: gp sync-await bundle
+    command: bundle install
   - name: Start Jekyll
+    init: gp sync-await bundle
     command: bundle exec jekyll serve --livereload
 
 ports:
