@@ -4,10 +4,8 @@ tasks:
       echo '# Install Ruby Gems to /workspace/gems' >> ~/.bashrc
       echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
-      gp sync-done bashrc
   - name: Install Bundler
-    init: gp sync-await bashrc
-    command: |
+    init: >
       gem install bundler &&
       bundle install &&
       gp sync-done bundle
