@@ -1,21 +1,21 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
   - name: Update ~/.bashrc
     before: |
       echo '# Install Ruby Gems to /workspace/gems' >> ~/.bashrc
       echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
-  - name: Install Bundler
+  - name: Install Bundler/Gems and Start Jekyll
     init: >
       source ~/.bashrc &&
       gem install bundler &&
-      bundle install &&
-      gp sync-done bundle
-  - name: Start Jekyll
-    init: gp sync-await bundle
-    command: > 
+      bundle install
+    command: >
       source ~/.bashrc &&
       bundle exec jekyll serve --livereload
       
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
   - port: 4000
     onOpen: open-browser
