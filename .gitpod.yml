@@ -1,11 +1,11 @@
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - name: Update ~/.bashrc
+  - name: All The Things
     before: |
+      echo '' >> ~/.bashrc
       echo '# Install Ruby Gems to /workspace/gems' >> ~/.bashrc
       echo 'export GEM_HOME="/workspace/gems"' >> ~/.bashrc
       echo 'export PATH="/workspace/gems/bin:$PATH"' >> ~/.bashrc
-  - name: Install Bundler/Gems and Start Jekyll
     init: >
       source ~/.bashrc &&
       gem install bundler &&
@@ -13,7 +13,6 @@ tasks:
     command: >
       source ~/.bashrc &&
       bundle exec jekyll serve --livereload
-      
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
